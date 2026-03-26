@@ -758,57 +758,106 @@ img { max-width: 100%; height: auto; display: block; }
    MOBILE (480px 이하)
    ============================================ */
 @media (max-width: 480px) {
-  .hero { min-height: 100svh; padding: 48px 16px; }
-  .hero-title { font-size: 48px; }
-  .hero-sub { font-size: 13px; }
-  .hero-badge { font-size: 12px; padding: 7px 18px; }
-  
-  .speech-section { padding: 56px 16px 48px; }
-  .speech-bubble { padding: 22px 18px; margin-bottom: 26px; border-width: 2px; border-radius: 20px; }
+
+  body { padding-bottom: 72px; }
+
+  /* hero */
+  .hero { min-height: 100svh; padding: 48px 16px 80px; }
+  .hero-title { font-size: clamp(38px, 11vw, 52px); line-height: 1.2; }
+  .hero-sub { font-size: 13px; margin-top: 14px; }
+  .hero-badge { font-size: 12px; padding: 7px 16px; margin-bottom: 20px; }
+  .hero-arrow svg { width: 28px; height: 28px; }
+
+  /* BA cards */
+  .ba-hero-section { grid-template-columns: 1fr; padding: 28px 16px; gap: 14px; }
+  .ba-img-wrap img { height: 200px; }
+  .ba-card-info { padding: 16px 14px 18px; }
+  .ba-card-title { font-size: 18px; }
+  .ba-card-desc { font-size: 12px; }
+
+  /* marquee */
+  .marquee-inner span { font-size: 13px; padding: 0 20px; }
+
+  /* speech */
+  .speech-section { padding: 48px 16px 40px; }
+  .speech-bubble { padding: 20px 16px; margin-bottom: 20px; border-radius: 18px; }
   .speech-bubble::after { border-width: 11px; bottom: -11px; }
-  .speech-bubble p { font-size: 20px; }
-  
-  .unni-section { padding: 56px 16px; }
-  .unni-title { font-size: 28px; }
+  .speech-bubble p { font-size: clamp(16px, 5vw, 20px); }
+  .speech-bubble .caption { font-size: 11px; }
+  .speech-bubble .emoji { font-size: 26px; }
+
+  /* unni */
+  .unni-section { padding: 48px 16px; }
+  .unni-title { font-size: clamp(22px, 7vw, 28px); }
   .unni-desc { font-size: 13px; }
-  
-  .worry-section { padding: 48px 16px; }
-  .worry-item { padding: 16px 16px; font-size: 13px; }
-  
-  .reveal-section { padding: 64px 16px 56px; }
-  .reveal-title { font-size: 34px; }
-  .device-image { width: 80%; }
-  
-  .specs-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .specs-section { padding: 28px 16px; }
-  
-  .how-section { padding: 56px 16px; }
-  .section-header h2 { font-size: 28px; }
-  .step-card { padding: 18px 16px; gap: 14px; }
-  .step-num { width: 44px; height: 44px; font-size: 19px; }
-  .step-content h3 { font-size: 16px; }
-  
-  .gel-section { padding: 56px 16px; }
-  .gel-grid { grid-template-columns: 1fr; gap: 18px; max-width: 320px; }
-  .gel-card img { height: 220px; }
-  
-  .ai-section { padding: 56px 16px; }
-  .ai-title { font-size: 28px; }
-  .ai-images { grid-template-columns: 1fr; gap: 12px; max-width: 320px; }
-  
-  .package-section { padding: 56px 16px; }
-  
-  .cta-section { padding: 64px 16px 100px; }
-  .cta-title { font-size: 34px; }
-  
-  .sticky-cta { padding: 10px 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); gap: 10px; }
-  .sticky-cta-btn { font-size: 16px; padding: 14px 16px; border-radius: 12px; }
-  .sticky-cta .cta-label strong { font-size: 15px; }
-  .sticky-cta .cta-label { font-size: 12px; }
-  
+
+  /* worry */
+  .worry-section { padding: 40px 16px; }
+  .worry-list { gap: 10px; }
+  .worry-item { padding: 14px 14px; font-size: 13px; border-radius: 12px; }
+
+  /* reveal */
+  .reveal-section { padding: 56px 16px 48px; }
+  .reveal-title { font-size: clamp(26px, 8vw, 34px); }
+  .reveal-sub { font-size: 13px; margin-bottom: 32px; }
+  .device-image { width: 78%; }
+
+  /* specs */
+  .specs-section { padding: 24px 16px; }
+  .specs-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .spec-item .spec-icon { font-size: 22px; }
+  .spec-item .spec-value { font-size: 13px; }
+  .spec-item .spec-label { font-size: 10px; }
+
+  /* how it works */
+  .how-section { padding: 48px 16px; }
+  .section-header { margin-bottom: 28px; }
+  .section-header h2 { font-size: clamp(22px, 6vw, 28px); }
+  .how-steps { gap: 12px; }
+  .step-card { padding: 16px 14px; gap: 12px; border-radius: 14px; }
+  .step-num { width: 40px; height: 40px; font-size: 17px; }
+  .step-content h3 { font-size: 15px; }
+  .step-content p { font-size: 12px; }
+
+  /* gel */
+  .gel-section { padding: 48px 16px; }
+  .gel-grid { grid-template-columns: 1fr; gap: 14px; max-width: 100%; }
+  .gel-card img { height: 180px; }
+  .gel-card-info { padding: 12px 12px; }
+  .gel-card-info .gel-name { font-size: 15px; }
+  .gel-card-info .gel-desc { font-size: 11px; }
+
+  /* ai */
+  .ai-section { padding: 48px 16px; }
+  .ai-title { font-size: clamp(22px, 6vw, 28px); }
+  .ai-desc { font-size: 12px; margin-bottom: 24px; }
+  .ai-images { grid-template-columns: 1fr; gap: 10px; max-width: 100%; }
+  .ai-images img { border-radius: 10px; }
+
+  /* package */
+  .package-section { padding: 48px 16px; }
+  .package-img { width: 100%; }
+
+  /* product full */
+  .product-full { padding: 28px 16px; }
+  .product-full img { width: 100%; border-radius: 14px; }
+
+  /* cta */
+  .cta-section { padding: 56px 16px 96px; }
+  .cta-emoji { font-size: 44px; margin-bottom: 14px; }
+  .cta-title { font-size: clamp(26px, 8vw, 34px); }
+  .cta-sub { font-size: 13px; }
+
+  /* sticky cta */
+  .sticky-cta { padding: 10px 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); gap: 8px; }
+  .sticky-cta-btn { font-size: 15px; padding: 13px 14px; border-radius: 12px; }
+  .sticky-cta .cta-label strong { font-size: 14px; }
+  .sticky-cta .cta-label { font-size: 11px; }
+
+  /* footer */
+  .footer { padding: 20px 16px; }
+
   .sticker { display: none; }
-  
-  .marquee-inner span { font-size: 14px; padding: 0 24px; }
 }
 
 /* ============================================
@@ -816,8 +865,18 @@ img { max-width: 100%; height: auto; display: block; }
    ============================================ */
 @media (min-width: 481px) and (max-width: 768px) {
   .hero-title { font-size: 64px; }
+
+  .ba-hero-section { padding: 40px 24px; gap: 16px; }
+  .ba-img-wrap img { height: 240px; }
+
   .gel-grid { grid-template-columns: repeat(3, 1fr); }
-  .ai-images { grid-template-columns: 1fr 1fr; }
+
+  .ai-images { grid-template-columns: 1fr 1fr; max-width: 500px; }
+
+  .specs-grid { grid-template-columns: repeat(4, 1fr); }
+
+  .product-full { padding: 36px 24px; }
+  .product-full img { width: 88%; }
 }
 </style>
 </head>
