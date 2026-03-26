@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Whitology - 너 이렇게 데이트 할 거야?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #111;
+  --white: #fff;
+  --yellow: #FFE135;
+  --pink: #FF6B9D;
+  --blue: #4A90D9;
+  --purple: #8B5CF6;
+  --coral: #FF6B6B;
+  --bg-cream: #FFF9E8;
+  --bg-dark: #1a1a1a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 800;
+  background: var(--bg-cream);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 80px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* ============================================
+   STICKY BOTTOM CTA BAR
+   ============================================ */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: var(--black);
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  transform: translateY(100%);
+  animation: slideUpCTA 0.5s ease 1.5s forwards;
+}
+
+@keyframes slideUpCTA {
+  to { transform: translateY(0); }
+}
+
+.sticky-cta .cta-label {
+  color: rgba(255,255,255,0.6);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.sticky-cta .cta-label strong {
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.sticky-cta-btn {
+  flex: 1;
+  max-width: 400px;
+  background: var(--yellow);
+  color: var(--black);
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: 18px;
+  padding: 16px 24px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.15s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sticky-cta-btn:active {
+  transform: scale(0.97);
+  background: #f0d400;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  min-height: 100svh;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 20px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255,225,53,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,107,157,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--black);
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: 15px;
+  padding: 8px 22px;
+  border-radius: 50px;
+  transform: rotate(-3deg);
+  margin-bottom: 28px;
+  animation: wiggle 2.5s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.hero-title {
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: clamp(48px, 12vw, 84px);
+  color: var(--white);
+  text-align: center;
+  line-height: 1.15;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title .hl {
+  color: var(--yellow);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .hl::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: -6px;
+  right: -6px;
+  height: 14px;
+  background: var(--yellow);
+  opacity: 0.25;
+  transform: skewX(-4deg);
+  z-index: -1;
+}
+
+.hero-sub {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: clamp(13px, 3vw, 17px);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  margin-top: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-arrow {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 1.5s infinite;
+  z-index: 2;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+.hero-arrow svg { width: 36px; height: 36px; }
+
+/* ============================================
+   B/A FULLSCREEN
+   ============================================ */
+.ba-hero-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.ba-hero-block { width: 100%; overflow: hidden; }
+.ba-hero-block img { width: 100%; display: block; }
+
+/* ============================================
+   MARQUEE
+   ============================================ */
+.marquee-strip {
+  background: var(--yellow);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-inner {
+  display: inline-flex;
+  animation: marquee 22s linear infinite;
+}
+
+.marquee-inner span {
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: 16px;
+  color: var(--black);
+  padding: 0 32px;
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   SPEECH BUBBLES
+   ============================================ */
+.speech-section {
+  background: var(--bg-cream);
+  padding: 72px 20px 60px;
+  text-align: center;
+}
+
+.speech-bubble {
+  max-width: 440px;
+  margin: 0 auto 32px;
+  background: var(--white);
+  border-radius: 24px;
+  padding: 28px 24px;
+  position: relative;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  border: 2.5px solid var(--black);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 14px solid var(--black);
+}
+
+.speech-bubble .emoji { font-size: 32px; display: block; margin-bottom: 10px; }
+
+.speech-bubble p {
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: clamp(18px, 5vw, 26px);
+  line-height: 1.45;
+}
+
+.speech-bubble .caption {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #aaa;
+  margin-top: 10px;
+  display: block;
+}
+
+/* ============================================
+   UNNI SECTION
+   ============================================ */
+.unni-section {
+  background: #FFF0F5;
+  padding: 72px 20px;
+  overflow: hidden;
+}
+
+.unni-card { max-width: 540px; margin: 0 auto; text-align: center; }
+
+.unni-tag {
+  display: inline-block;
+  background: var(--pink);
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.unni-title {
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: clamp(26px, 7vw, 42px);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.unni-title .uline {
+  background: linear-gradient(transparent 55%, rgba(255,107,157,0.3) 55%);
+  padding: 0 4px;
+}
+
+.unni-desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  line-height: 1.9;
+  margin-bottom: 28px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.unni-desc strong { color: var(--black); font-weight: 800; font-family: 'Noto Sans KR', sans-serif; }
+
+/* ============================================
+   WORRY LIST
+   ============================================ */
+.worry-section {
+  background: var(--white);
+  padding: 60px 20px;
+}
+
+.worry-list {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.worry-item {
+  background: #fafafa;
+  border-radius: 16px;
+  padding: 18px 20px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #444;
+  line-height: 1.6;
+  border-left: 4px solid var(--yellow);
+  text-align: left;
+}
+
+/* ============================================
+   PRODUCT REVEAL
+   ============================================ */
+.reveal-section {
+  background: var(--black);
+  padding: 88px 20px 72px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(74,144,217,0.12) 0%, transparent 70%);
+}
+
+.reveal-tag {
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.6);
+  font-size: 11px;
+  font-weight: 400;
+  padding: 6px 20px;
+  border-radius: 50px;
+  margin-bottom: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+.reveal-title {
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: clamp(30px, 8vw, 56px);
+  color: var(--white);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.reveal-sub {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: clamp(13px, 3vw, 16px);
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.device-image {
+  max-width: 420px;
+  width: 85%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.device-image img { filter: drop-shadow(0 20px 50px rgba(74,144,217,0.25)); }
+
+/* ============================================
+   SPECS
+   ============================================ */
+.specs-section {
+  background: #f0f0f0;
+  padding: 36px 16px;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.spec-item .spec-icon { font-size: 28px; margin-bottom: 6px; }
+.spec-item .spec-label { font-size: 11px; color: #999; font-weight: 400; margin-bottom: 2px; }
+.spec-item .spec-value { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: 14px; }
+
+/* ============================================
+   HOW IT WORKS
+   ============================================ */
+.how-section {
+  background: var(--white);
+  padding: 72px 20px;
+}
+
+.section-header { text-align: center; margin-bottom: 40px; }
+
+.section-header h2 {
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: clamp(26px, 7vw, 42px);
+  margin-bottom: 6px;
+}
+
+.section-header p {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: #999;
+}
+
+.how-steps {
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.step-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--bg-cream);
+  border-radius: 18px;
+  padding: 22px 20px;
+  border: 2px solid transparent;
+  transition: border-color 0.25s;
+}
+
+.step-card:active { border-color: var(--yellow); }
+
+.step-num {
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  background: var(--yellow);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: 22px;
+}
+
+.step-content h3 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: 17px; margin-bottom: 3px; }
+.step-content p { font-size: 12px; font-weight: 400; color: #777; line-height: 1.5; }
+
+/* ============================================
+   GEL LINEUP
+   ============================================ */
+.gel-section {
+  background: linear-gradient(180deg, #f8f8ff 0%, #fff 100%);
+  padding: 72px 20px;
+  text-align: center;
+}
+
+.gel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.gel-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  transition: transform 0.25s;
+}
+
+.gel-card:active { transform: scale(0.97); }
+.gel-card img { width: 100%; height: 200px; object-fit: cover; }
+
+.gel-card-info { padding: 16px 14px; }
+.gel-card-info .gel-name { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: 17px; margin-bottom: 4px; }
+.gel-card-info .gel-desc { font-size: 11px; font-weight: 400; color: #999; line-height: 1.6; }
+
+.gel-color-whitening { border-top: 4px solid var(--blue); }
+.gel-color-fluoride { border-top: 4px solid var(--purple); }
+.gel-color-gum { border-top: 4px solid var(--coral); }
+
+/* ============================================
+   AI SECTION
+   ============================================ */
+.ai-section {
+  background: var(--bg-dark);
+  padding: 72px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 30% 50%, rgba(139,92,246,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 50%, rgba(74,144,217,0.08) 0%, transparent 50%);
+}
+
+.ai-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 6px 20px;
+  border-radius: 50px;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.ai-title {
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: clamp(26px, 7vw, 42px);
+  color: white;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.ai-desc {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 2;
+}
+
+.ai-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.ai-images img { border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+/* ============================================
+   PACKAGE
+   ============================================ */
+.package-section {
+  background: var(--white);
+  padding: 72px 20px;
+  text-align: center;
+}
+
+.package-img { max-width: 520px; width: 92%; margin: 0 auto; }
+.package-img img { border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+
+/* ============================================
+   FULL PRODUCT
+   ============================================ */
+.product-full { background: #f5f5f5; }
+.product-full img { width: 100%; max-width: 720px; margin: 0 auto; }
+
+/* ============================================
+   CTA FINAL
+   ============================================ */
+.cta-section {
+  background: var(--black);
+  padding: 88px 20px 120px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,225,53,0.08) 0%, transparent 60%);
+}
+
+.cta-emoji { font-size: 56px; margin-bottom: 18px; display: block; position: relative; z-index: 2; }
+
+.cta-title {
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 900;
+  font-size: clamp(30px, 8vw, 52px);
+  color: var(--white);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-sub {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: #0d0d0d;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.footer p { color: rgba(255,255,255,0.25); font-size: 11px; font-weight: 400; }
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   STICKERS
+   ============================================ */
+.sticker { position: absolute; pointer-events: none; z-index: 1; }
+
+/* ============================================
+   MOBILE (480px 이하)
+   ============================================ */
+@media (max-width: 480px) {
+  .hero { min-height: 100svh; padding: 48px 16px; }
+  .hero-title { font-size: 48px; }
+  .hero-sub { font-size: 13px; }
+  .hero-badge { font-size: 12px; padding: 7px 18px; }
+  
+  .speech-section { padding: 56px 16px 48px; }
+  .speech-bubble { padding: 22px 18px; margin-bottom: 26px; border-width: 2px; border-radius: 20px; }
+  .speech-bubble::after { border-width: 11px; bottom: -11px; }
+  .speech-bubble p { font-size: 20px; }
+  
+  .unni-section { padding: 56px 16px; }
+  .unni-title { font-size: 28px; }
+  .unni-desc { font-size: 13px; }
+  
+  .worry-section { padding: 48px 16px; }
+  .worry-item { padding: 16px 16px; font-size: 13px; }
+  
+  .reveal-section { padding: 64px 16px 56px; }
+  .reveal-title { font-size: 34px; }
+  .device-image { width: 80%; }
+  
+  .specs-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .specs-section { padding: 28px 16px; }
+  
+  .how-section { padding: 56px 16px; }
+  .section-header h2 { font-size: 28px; }
+  .step-card { padding: 18px 16px; gap: 14px; }
+  .step-num { width: 44px; height: 44px; font-size: 19px; }
+  .step-content h3 { font-size: 16px; }
+  
+  .gel-section { padding: 56px 16px; }
+  .gel-grid { grid-template-columns: 1fr; gap: 18px; max-width: 320px; }
+  .gel-card img { height: 220px; }
+  
+  .ai-section { padding: 56px 16px; }
+  .ai-title { font-size: 28px; }
+  .ai-images { grid-template-columns: 1fr; gap: 12px; max-width: 320px; }
+  
+  .package-section { padding: 56px 16px; }
+  
+  .cta-section { padding: 64px 16px 100px; }
+  .cta-title { font-size: 34px; }
+  
+  .sticky-cta { padding: 10px 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); gap: 10px; }
+  .sticky-cta-btn { font-size: 16px; padding: 14px 16px; border-radius: 12px; }
+  .sticky-cta .cta-label strong { font-size: 15px; }
+  .sticky-cta .cta-label { font-size: 12px; }
+  
+  .sticker { display: none; }
+  
+  .marquee-inner span { font-size: 14px; padding: 0 24px; }
+}
+
+/* ============================================
+   TABLET (481–768px)
+   ============================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-title { font-size: 64px; }
+  .gel-grid { grid-template-columns: repeat(3, 1fr); }
+  .ai-images { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== STICKY BOTTOM CTA ===== -->
+<div class="sticky-cta">
+  <div class="cta-label"><strong>Whitology</strong></div>
+  <a href="#" class="sticky-cta-btn">지금 시작하기 →</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="sticker" style="top:12%; left:8%; font-size:48px; opacity:0.12; transform:rotate(-15deg);">🦷</div>
+  <div class="sticker" style="top:28%; right:10%; font-size:32px; opacity:0.1; transform:rotate(20deg);">✨</div>
+  <div class="sticker" style="bottom:22%; left:14%; font-size:40px; opacity:0.08; transform:rotate(10deg);">😬</div>
+
+  <div class="hero-badge">⚠️ 치아 자신감 경고</div>
+  <h1 class="hero-title">
+    너 <span class="hl">이렇게</span><br>데이트 할 거야?
+  </h1>
+  <p class="hero-sub">누런 이로 셀카 찍을 자신 있어?</p>
+
+  <div class="hero-arrow">
+    <svg viewBox="0 0 36 36" fill="none">
+      <path d="M18 6 L18 30 M9 21 L18 30 L27 21" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== B/A FULLSCREEN (인트로 직후) ===== -->
+<section class="ba-hero-section">
+  <div class="ba-hero-block">
+    <img src="img/before_after_teeth.png" alt="Before After 치아 클로즈업" loading="eager">
+  </div>
+  <div class="ba-hero-block">
+    <img src="img/before_after_face2.png" alt="Before After 얼굴 비교" loading="eager">
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>🦷 누런이 탈출</span><span>✨ 셀프 미백</span><span>💎 LED 광학 기술</span><span>🔬 AI 구강 진단</span><span>💜 잇몸 케어</span><span>📱 스마트 앱 연동</span><span>🦷 누런이 탈출</span><span>✨ 셀프 미백</span><span>💎 LED 광학 기술</span><span>🔬 AI 구강 진단</span><span>💜 잇몸 케어</span><span>📱 스마트 앱 연동</span>
+  </div>
+</div>
+
+<!-- ===== SPEECH BUBBLES ===== -->
+<section class="speech-section">
+  <div class="speech-bubble fade-up">
+    <span class="emoji">😱</span>
+    <p>"카페 조명 밑에서<br>내 치아색 실화냐..."</p>
+    <span class="caption">— 소개팅 3분 전, 화장실 거울 앞</span>
+  </div>
+  <div class="speech-bubble fade-up">
+    <span class="emoji">🤳</span>
+    <p>"입 벌리고 웃는 사진<br>한 장도 없는 내 폰"</p>
+    <span class="caption">— 인스타 프사 고를 때마다</span>
+  </div>
+  <div class="speech-bubble fade-up">
+    <span class="emoji">💼</span>
+    <p>"면접관 앞에서<br>자신있게 웃어야 하는데..."</p>
+    <span class="caption">— 거울 보며 연습하다 포기</span>
+  </div>
+</section>
+
+<!-- ===== UNNI ===== -->
+<section class="unni-section">
+  <div class="unni-card fade-up">
+    <span class="unni-tag">공감 100%</span>
+    <h2 class="unni-title">회사 다니는 우리 언니도<br><span class="uline">치아색</span> 때문에 고민?</h2>
+    <p class="unni-desc">
+      커피 없이 못 사는 직장인,<br>
+      와인 좋아하는 언니,<br>
+      치과 미백은 너무 비싸고 시간도 없고...<br>
+      <strong>그래서 준비했습니다.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ===== WORRIES ===== -->
+<section class="worry-section">
+  <div class="worry-list">
+    <div class="worry-item fade-up">😤 "치과 미백 100만원 넘게 냈는데 6개월도 안 갔어"</div>
+    <div class="worry-item fade-up">😩 "미백 부작용 시려서 밥도 못 먹었잖아"</div>
+    <div class="worry-item fade-up">🤔 "홈 미백 키트 사봤는데 효과를 모르겠어"</div>
+    <div class="worry-item fade-up">💸 "매달 치과 가기엔 돈도 시간도 없어..."</div>
+  </div>
+</section>
+
+<!-- ===== PRODUCT REVEAL ===== -->
+<section class="reveal-section">
+  <span class="reveal-tag">the solution</span>
+  <h2 class="reveal-title fade-up">집에서, 10분이면 끝.</h2>
+  <p class="reveal-sub fade-up">치과급 LED 미백을 매일 내 방에서</p>
+  <div class="device-image fade-up">
+    <img src="img/device.jpg" alt="Whitology Device" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== SPECS ===== -->
+<section class="specs-section">
+  <div class="specs-grid">
+    <div class="spec-item fade-up">
+      <div class="spec-icon">💡</div>
+      <div class="spec-label">LED 파장</div>
+      <div class="spec-value">460nm + 405nm</div>
+    </div>
+    <div class="spec-item fade-up">
+      <div class="spec-icon">⏱️</div>
+      <div class="spec-label">1회 사용</div>
+      <div class="spec-value">10분</div>
+    </div>
+    <div class="spec-item fade-up">
+      <div class="spec-icon">🏥</div>
+      <div class="spec-label">소재</div>
+      <div class="spec-value">의료용 등급</div>
+    </div>
+    <div class="spec-item fade-up">
+      <div class="spec-icon">📱</div>
+      <div class="spec-label">연동</div>
+      <div class="spec-value">스마트 앱</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-section">
+  <div class="section-header fade-up">
+    <h2>이렇게 쉬워도 되나요?</h2>
+    <p>하루 10분, 3단계면 끝</p>
+  </div>
+  <div class="how-steps">
+    <div class="step-card fade-up">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>젤 바르기 🖌️</h3>
+        <p>마우스피스에 전용 미백 젤을 얇게 도포</p>
+      </div>
+    </div>
+    <div class="step-card fade-up">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>물고 10분 ⏰</h3>
+        <p>충전기에 올리면 자동 시작. 드라마 한 장면이면 끝</p>
+      </div>
+    </div>
+    <div class="step-card fade-up">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>앱으로 체크 📱</h3>
+        <p>AI가 치아 상태 분석 → 맞춤 케어 추천</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GEL LINEUP ===== -->
+<section class="gel-section">
+  <div class="section-header fade-up">
+    <h2>3가지 전용 젤 라인업</h2>
+    <p>미백부터 잇몸 케어까지, 한 번에</p>
+  </div>
+  <div class="gel-grid">
+    <div class="gel-card gel-color-whitening fade-up">
+      <img src="img/gel_whitening2.jpg" alt="Whitening Gel" loading="lazy">
+      <div class="gel-card-info">
+        <div class="gel-name">Whitening</div>
+        <div class="gel-desc">과산화수소 기반<br>본격 미백 젤</div>
+      </div>
+    </div>
+    <div class="gel-card gel-color-fluoride fade-up">
+      <img src="img/gel_fluoride.jpg" alt="Fluoride Care" loading="lazy">
+      <div class="gel-card-info">
+        <div class="gel-name">Fluoride Care</div>
+        <div class="gel-desc">불소 코팅으로<br>치아 보호</div>
+      </div>
+    </div>
+    <div class="gel-card gel-color-gum fade-up">
+      <img src="img/gel_gum.jpg" alt="Gum Care" loading="lazy">
+      <div class="gel-card-info">
+        <div class="gel-name">Gum Care</div>
+        <div class="gel-desc">잇몸 건강까지<br>꼼꼼하게</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI ===== -->
+<section class="ai-section">
+  <span class="ai-badge">🤖 AI Powered</span>
+  <h2 class="ai-title fade-up">내 치아, AI가 분석해 줌</h2>
+  <p class="ai-desc fade-up">사진 한 장이면 충치·잇몸염·치석 자동 체크</p>
+  <div class="ai-images fade-up">
+    <img src="img/ai_analysis.jpg" alt="AI 구강 분석" loading="lazy">
+    <img src="img/ai_analysis2.jpg" alt="AI 구강 분석 2" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PACKAGE ===== -->
+<section class="package-section">
+  <div class="section-header fade-up">
+    <h2>프리미엄 구성품</h2>
+    <p>언박싱부터 다른 클래스</p>
+  </div>
+  <div class="package-img fade-up">
+    <img src="img/package.png" alt="Whitology Package" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== FULL PRODUCT ===== -->
+<section class="product-full">
+  <img src="img/products.jpg" alt="Whitology Products" loading="lazy">
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-section">
+  <span class="cta-emoji">😁</span>
+  <h2 class="cta-title fade-up">이제 자신있게<br>웃어볼까?</h2>
+  <p class="cta-sub fade-up">Whitology와 함께라면, 매일이 미백 Day</p>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>© 2026 Whitology. All rights reserved.</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
