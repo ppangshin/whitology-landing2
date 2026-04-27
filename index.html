@@ -214,6 +214,30 @@ section{padding:56px 0 64px;position:relative}
 .toast.show{top:calc(var(--top-offset) + 12px)}
 .toast-icon{font-size:1.3rem;flex-shrink:0}
 
+/* ─── 동의 체크박스 ─── */
+.consent-checks{display:flex;flex-direction:column;gap:8px;margin:12px 0;text-align:left}
+.consent-label{display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:.82rem;color:var(--text-light);line-height:1.5;user-select:none;-webkit-user-select:none}
+.consent-cb{position:absolute;opacity:0;width:0;height:0}
+.cb-custom{flex-shrink:0;width:20px;height:20px;border:1.5px solid rgba(110,75,255,.25);border-radius:5px;background:#fff;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:1px}
+.consent-cb:checked+.cb-custom{background:var(--accent);border-color:var(--accent)}
+.consent-cb:checked+.cb-custom::after{content:'✓';color:#fff;font-size:.7rem;font-weight:700}
+.consent-text{flex:1}
+.consent-text strong{color:var(--accent);font-weight:700}
+.consent-text a{color:var(--text-light);text-decoration:underline;text-underline-offset:2px;transition:color .2s}
+.consent-text a:hover{color:var(--accent)}
+
+/* ─── 개인정보 동의 팝업 ─── */
+.privacy-modal{text-align:left;max-width:520px;padding:32px 28px}
+.privacy-block{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(110,75,255,.08)}
+.privacy-block:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.privacy-block h3{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:10px}
+.privacy-block p{font-size:.82rem;color:var(--text-light);line-height:1.65;margin-bottom:10px}
+.privacy-note{font-size:.78rem;color:var(--text-muted);margin-top:10px;margin-bottom:0}
+.privacy-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.8rem}
+.privacy-table th,.privacy-table td{border:1px solid rgba(110,75,255,.1);padding:10px 12px;text-align:left}
+.privacy-table th{background:var(--bg-alt);color:var(--text);font-weight:600;width:35%}
+.privacy-table td{color:var(--text-light)}
+
 /* ─── 플로팅 CTA ─── */
 .float-indicator{position:fixed;bottom:48px;left:50%;transform:translateX(-50%);z-index:90;background:var(--accent);color:#fff;padding:12px 28px;border-radius:100px;font-size:clamp(.92rem,2vw,1rem);font-weight:700;cursor:pointer;box-shadow:0 8px 32px rgba(110,75,255,.3);transition:transform .4s,box-shadow .3s,opacity .3s;animation:float-bounce 3s ease-in-out infinite;text-decoration:none;white-space:nowrap}
 .float-indicator:hover{transform:translateX(-50%) translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(110,75,255,.4)}
@@ -342,6 +366,13 @@ footer .footer-links a:hover{color:var(--accent)}
   .modal-overlay{align-items:flex-end}
   .modal{width:100%;max-width:100%;border-radius:20px 20px 0 0;padding:24px 20px calc(env(safe-area-inset-bottom,16px) + 20px);transform:translateY(100%);max-height:85vh;max-height:85dvh}
   .modal-overlay.active .modal{transform:translateY(0)}
+  .privacy-modal{padding:24px 18px calc(env(safe-area-inset-bottom,16px) + 20px)}
+  .privacy-block h3{font-size:.85rem}
+  .privacy-block p{font-size:.78rem}
+  .privacy-table{font-size:.75rem}
+  .privacy-table th,.privacy-table td{padding:8px 10px}
+  .consent-label{font-size:.78rem}
+  .cb-custom{width:18px;height:18px}
   .modal-close{top:12px;right:12px}
   .modal h2{font-size:1.2rem}
   .modal-price-row{margin-bottom:12px}
@@ -634,16 +665,28 @@ footer .footer-links a:hover{color:var(--accent)}
         <span class="old">217,000원</span>
         <span class="now">49,900</span><span class="won">원</span>
       </div>
-      <p class="cta-price-desc">결제 없이 이메일만 입력하면 끝.</p>
+      <p class="cta-price-desc">10초면 끝, 출시되면 가장 먼저 알려드려요.</p>
 
       <div class="inline-form-row">
-        <input type="email" id="ctaEmail" placeholder="이메일 주소를 입력하세요" autocomplete="email" inputmode="email">
+        <input type="tel" id="ctaPhone" placeholder="휴대전화번호를 입력하세요" autocomplete="tel" inputmode="tel" maxlength="13">
+      </div>
+      <div class="consent-checks">
+        <label class="consent-label">
+          <input type="checkbox" id="ctaConsent1" class="consent-cb" checked>
+          <span class="cb-custom"></span>
+          <span class="consent-text"><strong>[필수]</strong> <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용 동의</a></span>
+        </label>
+        <label class="consent-label">
+          <input type="checkbox" id="ctaConsent2" class="consent-cb">
+          <span class="cb-custom"></span>
+          <span class="consent-text">[선택] <a href="javascript:void(0)" onclick="openPrivacy()">마케팅 정보 수신 동의</a></span>
+        </label>
       </div>
       <button class="cta-reserve-btn" onclick="submitReserve('bottom')">
         사전예약 하기 <span class="arrow">→</span>
       </button>
       <p class="cta-sub">
-        결제 없이 이메일만으로 완료 · <strong>출시 알림 + 얼리버드 혜택 보장</strong>
+        지금 예약하면 얼리버드 특가 + <strong>케어 젤 3종 무료 혜택</strong> 확정
       </p>
       <div class="slots-counter">
         선착순 1,000명 중
@@ -654,7 +697,7 @@ footer .footer-links a:hover{color:var(--accent)}
 
     <ul class="cta-notice reveal">
       <li>· 사전 예약 시 결제가 발생하지 않습니다.</li>
-      <li>· 제품 출시 시점에 등록하신 이메일로 개별 안내 드립니다.</li>
+      <li>· 제품 출시 시점에 등록하신 번호로 개별 안내 드립니다.</li>
       <li>· 얼리버드 특가(49,900원) 및 전용 젤 3종 무료 혜택은 사전 예약자 한정입니다.</li>
     </ul>
   </div>
@@ -664,7 +707,7 @@ footer .footer-links a:hover{color:var(--accent)}
   <div class="container">
     <p style="font-size:1.2rem;font-weight:900;letter-spacing:-.03em;margin-bottom:12px;color:var(--text);">Whit<span style="color:var(--accent)">o</span>logy</p>
     <p>&copy; 2026 Whitology. All rights reserved.</p>
-    <div class="footer-links"><a href="#">이용약관</a><a href="#">개인정보처리방침</a><a href="#">고객센터</a></div>
+    <div class="footer-links"><a href="#">이용약관</a><a href="javascript:void(0)" onclick="openPrivacy()">개인정보처리방침</a><a href="#">고객센터</a></div>
   </div>
 </footer>
 
@@ -683,13 +726,25 @@ footer .footer-links a:hover{color:var(--accent)}
       </div>
       <div class="modal-gift">🎁 케어 젤 3종 무료 증정</div>
       <div class="modal-form">
-        <input type="email" id="modalEmail" placeholder="이메일 주소를 입력하세요" autocomplete="email" inputmode="email">
+        <input type="tel" id="modalPhone" placeholder="휴대전화번호를 입력하세요" autocomplete="tel" inputmode="tel" maxlength="13">
+        <div class="consent-checks">
+          <label class="consent-label">
+            <input type="checkbox" id="modalConsent1" class="consent-cb" checked>
+            <span class="cb-custom"></span>
+            <span class="consent-text"><strong>[필수]</strong> <a href="javascript:void(0)" onclick="openPrivacy()">개인정보 수집·이용 동의</a></span>
+          </label>
+          <label class="consent-label">
+            <input type="checkbox" id="modalConsent2" class="consent-cb">
+            <span class="cb-custom"></span>
+            <span class="consent-text">[선택] <a href="javascript:void(0)" onclick="openPrivacy()">마케팅 정보 수신 동의</a></span>
+          </label>
+        </div>
         <button onclick="submitReserve('modal')">
           사전예약 하기 <span class="arrow">→</span>
         </button>
       </div>
       <p class="modal-sub">
-        결제 없이 이메일만으로 예약 완료<br>
+        10초면 예약 완료!<br>
         출시 알림 + 얼리버드 혜택을 가장 먼저 받아보세요
       </p>
     </div>
@@ -705,6 +760,45 @@ footer .footer-links a:hover{color:var(--accent)}
 <div class="toast" id="toast">
   <span class="toast-icon">🎉</span>
   <span>사전예약 완료! 출시 소식을 가장 먼저 알려드릴게요.</span>
+</div>
+
+<!-- ═══ 개인정보 동의 팝업 ═══ -->
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal privacy-modal">
+    <button class="modal-close" onclick="closePrivacy()">&times;</button>
+    <h2 style="text-align:left;font-size:1.15rem;margin-bottom:20px">개인정보 수집·이용 동의</h2>
+
+    <div class="privacy-block">
+      <h3>[필수] 개인정보 수집·이용 동의</h3>
+      <p>Whitology(이하 '회사')는 사전예약 서비스 제공을 위해 아래와 같이 개인정보를 수집·이용합니다.</p>
+      <table class="privacy-table">
+        <tr><th>항목</th><th>내용</th></tr>
+        <tr><td>수집 항목</td><td>휴대전화번호</td></tr>
+        <tr><td>수집·이용 목적</td><td>사전예약 접수 및 출시 안내 발송</td></tr>
+        <tr><td>보유·이용 기간</td><td>사전예약 서비스 종료 또는 출시 안내 발송 후 즉시 파기</td></tr>
+      </table>
+      <p class="privacy-note">귀하는 개인정보 수집·이용에 대한 동의를 거부할 권리가 있으며, 거부 시 사전예약 신청이 제한됩니다.</p>
+    </div>
+
+    <div class="privacy-block">
+      <h3>[선택] 마케팅 정보 수신 동의</h3>
+      <table class="privacy-table">
+        <tr><th>항목</th><th>내용</th></tr>
+        <tr><td>수집 항목</td><td>휴대전화번호</td></tr>
+        <tr><td>수집·이용 목적</td><td>신제품·이벤트·프로모션 정보 안내 (SMS/카카오 알림톡)</td></tr>
+        <tr><td>보유·이용 기간</td><td>동의 철회 시까지</td></tr>
+      </table>
+      <p class="privacy-note">동의를 거부하셔도 사전예약 신청이 가능합니다. 언제든 수신 거부하실 수 있습니다.</p>
+    </div>
+
+    <div class="privacy-block">
+      <h3>개인정보 보호 문의</h3>
+      <p>수집된 개인정보 관련 문의 및 열람·정정·삭제·처리정지 요청은 아래로 연락 주시기 바랍니다.</p>
+      <p style="margin-top:6px"><strong>이메일:</strong> <a href="mailto:whitologybiz@gmail.com" style="color:var(--accent)">whitologybiz@gmail.com</a></p>
+    </div>
+
+    <button class="btn-primary" style="margin-top:20px;width:100%;justify-content:center;border-radius:12px" onclick="closePrivacy();">확인</button>
+  </div>
 </div>
 
 <script>
@@ -755,7 +849,7 @@ function openModal(){
   document.body.style.overflow = 'hidden';
   // 데스크톱만 자동 포커스 (모바일은 키보드 올라와서 UX 방해)
   setTimeout(function(){
-    if(window.innerWidth > 768) document.getElementById('modalEmail').focus();
+    if(window.innerWidth > 768) document.getElementById('modalPhone').focus();
   }, 400);
 }
 function closeModal(){
@@ -776,23 +870,58 @@ function showToast(){
   setTimeout(function(){ t.classList.remove('show'); }, 4000);
 }
 
+// ─── 개인정보 동의 팝업 ───
+function openPrivacy(){
+  document.getElementById('privacyModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePrivacy(){
+  document.getElementById('privacyModal').classList.remove('active');
+  // 다른 모달이 열려있으면 overflow 유지
+  if(!document.getElementById('modal').classList.contains('active')){
+    document.body.style.overflow = '';
+  }
+}
+
+// ─── 전화번호 자동 하이픈 ───
+function formatPhone(input){
+  var val = input.value.replace(/[^0-9]/g,'');
+  if(val.length > 3 && val.length <= 7) val = val.slice(0,3)+'-'+val.slice(3);
+  else if(val.length > 7) val = val.slice(0,3)+'-'+val.slice(3,7)+'-'+val.slice(7,11);
+  input.value = val;
+}
+document.addEventListener('input', function(e){
+  if(e.target.type === 'tel') formatPhone(e.target);
+});
+
 // ─── 사전예약 제출 ───
 async function submitReserve(source){
-  var emailId = source === 'modal' ? 'modalEmail' : 'ctaEmail';
-  var el = document.getElementById(emailId);
-  var email = el.value.trim();
+  var phoneId = source === 'modal' ? 'modalPhone' : 'ctaPhone';
+  var consentId = source === 'modal' ? 'modalConsent1' : 'ctaConsent1';
+  var marketingId = source === 'modal' ? 'modalConsent2' : 'ctaConsent2';
 
-  if(!email || !email.includes('@') || !email.includes('.')){
+  var el = document.getElementById(phoneId);
+  var phone = el.value.replace(/[^0-9]/g,'');
+
+  // 전화번호 검증
+  if(!phone || phone.length < 10 || phone.length > 11){
     el.style.borderColor = 'var(--coral)';
-    el.setAttribute('placeholder', '이메일을 정확히 입력해주세요');
-    // 모바일 진동 피드백
+    el.setAttribute('placeholder', '전화번호를 정확히 입력해주세요');
     if(navigator.vibrate) navigator.vibrate(100);
     setTimeout(function(){
       el.style.borderColor = '';
-      el.setAttribute('placeholder', '이메일 주소를 입력하세요');
+      el.setAttribute('placeholder', '휴대전화번호를 입력하세요');
     }, 2000);
     return;
   }
+
+  // 필수 동의 체크
+  if(!document.getElementById(consentId).checked){
+    alert('개인정보 수집·이용에 동의해주세요.');
+    return;
+  }
+
+  var marketing = document.getElementById(marketingId).checked;
 
   // 버튼 로딩 상태
   var btn = el.closest('.modal-form, .cta-inline-form').querySelector('button');
@@ -803,11 +932,11 @@ async function submitReserve(source){
   trackClick(source + '_reserve_submit');
 
   await supabaseInsert('reservations', {
-    email: email,
+    email: '',
     name: '',
-    phone: '',
+    phone: phone,
     gender: '',
-    age: '',
+    age: marketing ? 'marketing_agreed' : '',
     utm_source: getParam('utm_source'),
     utm_medium: getParam('utm_medium'),
     utm_campaign: getParam('utm_campaign'),
@@ -896,6 +1025,9 @@ window.addEventListener('load', function(){
 
 document.getElementById('modal').addEventListener('click', function(e){
   if(e.target === e.currentTarget) closeModal();
+});
+document.getElementById('privacyModal').addEventListener('click', function(e){
+  if(e.target === e.currentTarget) closePrivacy();
 });
 </script>
 </body>
