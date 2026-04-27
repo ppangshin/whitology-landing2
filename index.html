@@ -117,6 +117,30 @@ section{padding:56px 0 64px;position:relative}
 .feature-icon.violet{background:rgba(110,75,255,.08)}
 .feature-card h3{font-size:1.12rem;font-weight:700;margin-bottom:8px;color:var(--text)}
 .feature-card p{font-size:.88rem;color:var(--text-light);line-height:1.7}
+.feature-card-img{width:100%;height:160px;object-fit:cover;border-radius:14px;margin-bottom:14px}
+.features-grid--2col{grid-template-columns:repeat(2,1fr)}
+
+/* ─── 젤 3종 제품 카드 ─── */
+.products-section{background:#fff}
+.products-section .section-desc{margin-bottom:28px}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.product-card{background:var(--bg-alt);border:1px solid rgba(110,75,255,.08);border-radius:20px;overflow:hidden;transition:all .4s;box-shadow:var(--shadow-sm)}
+.product-card:hover{transform:translateY(-4px);border-color:rgba(110,75,255,.18);box-shadow:var(--shadow-md)}
+.product-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-bottom:1px solid rgba(110,75,255,.06)}
+.product-card-body{padding:20px}
+.product-tag{display:inline-block;font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:10px}
+.product-tag.blue{background:rgba(47,107,255,.1);color:var(--primary)}
+.product-tag.coral{background:rgba(239,68,68,.08);color:var(--coral)}
+.product-tag.violet{background:rgba(110,75,255,.08);color:var(--accent)}
+.product-card-body h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--text)}
+.product-card-body p{font-size:.85rem;color:var(--text-light);line-height:1.65}
+
+/* ─── 디바이스 쇼케이스 ─── */
+.showcase-section{background:#fff}
+.showcase-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.showcase-image img{width:100%;border-radius:20px;box-shadow:var(--shadow-md)}
+.showcase-text{max-width:480px}
+.showcase-text .section-desc{margin-top:12px}
 
 /* ─── 소셜 프루프 ─── */
 .social-proof{text-align:center;background:#fff}
@@ -220,6 +244,10 @@ footer .footer-links a:hover{color:var(--accent)}
   .hero-stats{justify-content:center}
   .hero-visual{margin-top:32px}
   .features-grid{grid-template-columns:1fr 1fr}
+  .features-grid--2col{grid-template-columns:1fr 1fr}
+  .products-grid{grid-template-columns:repeat(3,1fr)}
+  .showcase-layout{grid-template-columns:1fr;text-align:center}
+  .showcase-text{max-width:100%;margin:0 auto}
 }
 
 /* ═══════════════════════════════
@@ -264,6 +292,23 @@ footer .footer-links a:hover{color:var(--accent)}
   .feature-icon{width:42px;height:42px;font-size:1.2rem;margin-bottom:10px}
   .feature-card h3{font-size:.98rem;margin-bottom:6px}
   .feature-card p{font-size:.85rem}
+  .feature-card-img{height:140px;border-radius:12px;margin-bottom:12px}
+  .features-grid--2col{grid-template-columns:1fr}
+
+  /* ── 젤 3종 카드 — 모바일 횡스크롤 ── */
+  .products-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;margin:0 -16px;padding-left:16px;padding-right:16px}
+  .products-grid::-webkit-scrollbar{display:none}
+  .products-grid{-ms-overflow-style:none;scrollbar-width:none}
+  .product-card{min-width:260px;max-width:280px;flex-shrink:0;scroll-snap-align:center;border-radius:16px}
+  .product-card-img{aspect-ratio:4/3}
+  .product-card-body{padding:16px}
+  .product-card-body h3{font-size:.95rem}
+  .product-card-body p{font-size:.82rem}
+
+  /* ── 디바이스 쇼케이스 ── */
+  .showcase-layout{grid-template-columns:1fr;gap:20px;text-align:center}
+  .showcase-image img{max-width:320px;margin:0 auto;border-radius:16px}
+  .showcase-text{max-width:100%;margin:0 auto}
 
   /* ── 리뷰 — 모바일 횡스크롤 ── */
   .reviews{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;margin:0 -16px;padding-left:16px;padding-right:16px}
@@ -368,10 +413,10 @@ footer .footer-links a:hover{color:var(--accent)}
 .compare-bottom strong{color:var(--coral);font-weight:700}
 
 /* 잔여 수량 카운터 */
-.slots-counter{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 18px;background:#fff;border:1.5px solid rgba(239,68,68,.15);border-radius:100px;font-size:.88rem;color:var(--text);font-weight:600}
-.slots-counter .slots-bar{flex:0 0 100px;height:6px;background:rgba(110,75,255,.1);border-radius:3px;overflow:hidden;position:relative}
-.slots-counter .slots-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--coral));border-radius:3px;transition:width .5s}
-.slots-counter .slots-num{color:var(--coral);font-weight:800}
+.slots-counter{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 18px;background:rgba(239,68,68,.06);border:1.5px solid rgba(239,68,68,.2);border-radius:100px;font-size:.88rem;color:var(--text);font-weight:600}
+.slots-counter .slots-bar{flex:0 0 100px;height:8px;background:rgba(239,68,68,.12);border-radius:4px;overflow:hidden;position:relative}
+.slots-counter .slots-fill{height:100%;background:linear-gradient(90deg,var(--coral),#dc2626);border-radius:4px;transition:width .5s}
+.slots-counter .slots-num{color:var(--coral);font-weight:800;font-size:1rem}
 
 @media(max-width:768px){
   .compare-table{border-radius:16px}
@@ -379,7 +424,8 @@ footer .footer-links a:hover{color:var(--accent)}
   .compare-cell{padding:12px 10px;font-size:.82rem}
   .compare-bottom{font-size:.8rem}
   .slots-counter{font-size:.82rem;padding:8px 14px;gap:6px}
-  .slots-counter .slots-bar{flex:0 0 80px;height:5px}
+  .slots-counter .slots-bar{flex:0 0 80px;height:7px}
+  .slots-counter .slots-num{font-size:.92rem}
 }
 @media(max-width:360px){
   .compare-cell{padding:10px 8px;font-size:.76rem}
@@ -447,27 +493,59 @@ footer .footer-links a:hover{color:var(--accent)}
   </div>
 </section>
 
-<!-- ═══ 핵심 기능 3개 ═══ -->
+<!-- ═══ 핵심 기능 ═══ -->
 <section class="features" id="features">
   <div class="container">
     <div class="section-label reveal">WHY WHITOLOGY</div>
     <div class="section-title reveal">왜 Whitology인가요?</div>
     <div class="section-desc reveal" style="margin-bottom:28px">의료기기급 LED 기술 + AI 분석 + 전용 케어 젤,<br>셋이 합쳐져 집에서 치과급 관리가 가능합니다.</div>
-    <div class="features-grid">
+    <div class="features-grid features-grid--2col">
       <div class="feature-card reveal">
+        <img class="feature-card-img" src="images/Whitology4_AI_analysis3.jpg" alt="Whitology LED 디바이스" loading="lazy">
         <div class="feature-icon blue">💡</div>
         <h3>의료기기급 LED 디바이스</h3>
         <p>치과와 동일한 파장의 LED로 미백·잇몸·충치 케어를 하나의 디바이스로 해결. 무선 충전 & 방수 설계.</p>
       </div>
       <div class="feature-card reveal">
+        <img class="feature-card-img" src="images/Whitology3_Package.png" alt="AI 정밀 분석" loading="lazy">
         <div class="feature-icon green">🔬</div>
         <h3>AI 정밀 분석</h3>
         <p>사진 2장으로 치아 색상, 잇몸 건강, 플라그 수준까지 분석. 나만의 4주 맞춤 케어 플랜을 제공합니다.</p>
       </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon violet">🧴</div>
-        <h3>전용 케어 젤 3종</h3>
-        <p>미백·잇몸·충치 케어 목적에 맞는 전용 젤. 사전예약 시 3종 모두 무료 증정합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 전용 케어 젤 3종 ═══ -->
+<section class="products-section">
+  <div class="container">
+    <div class="section-label reveal">CARE GEL</div>
+    <div class="section-title reveal">목적별 전용 케어 젤 3종</div>
+    <p class="section-desc reveal">사전예약 시 3종 모두 무료 증정합니다.</p>
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <img class="product-card-img" src="images/whitening-pen.jpeg" alt="Whitening 미백 젤" loading="lazy">
+        <div class="product-card-body">
+          <span class="product-tag blue">미백 케어</span>
+          <h3>Whitening Gel</h3>
+          <p>과산화물 프리 포뮬러로 매일 안전하게 미백. LED와 결합 시 효과 극대화.</p>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <img class="product-card-img" src="images/gum-care.jpeg" alt="Gum Care 잇몸 젤" loading="lazy">
+        <div class="product-card-body">
+          <span class="product-tag coral">잇몸 케어</span>
+          <h3>Gum Care Gel</h3>
+          <p>잇몸 염증 완화와 혈행 개선에 집중한 전용 포뮬러. 민감한 잇몸에도 안심.</p>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <img class="product-card-img" src="images/fluoride-care.jpeg" alt="Fluoride Care 충치 젤" loading="lazy">
+        <div class="product-card-body">
+          <span class="product-tag violet">충치 케어</span>
+          <h3>Fluoride Care Gel</h3>
+          <p>고농도 불소 배합으로 치아 법랑질 강화. 충치 예방의 근본적 솔루션.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -494,6 +572,22 @@ footer .footer-links a:hover{color:var(--accent)}
         <div class="review-stars">★★★★☆</div>
         <p class="review-text">"잇몸이 약해서 걱정했는데 잇몸 케어 모드가 확실히 다르더라고요. 국내 제조라 믿음이 가요."</p>
         <div class="review-author"><div class="review-avatar">L</div><div><div class="review-name">이*준</div><div class="review-meta">32세 · 사용 5주</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 디바이스 쇼케이스 ═══ -->
+<section class="showcase-section">
+  <div class="container">
+    <div class="showcase-layout">
+      <div class="showcase-image reveal">
+        <img src="images/hero-device.jpeg" alt="Whitology LED 디바이스" loading="lazy">
+      </div>
+      <div class="showcase-text">
+        <div class="section-label reveal">THE DEVICE</div>
+        <div class="section-title reveal">치과에서 쓰는 그 기술,<br>이제 집에서 매일 5분</div>
+        <p class="section-desc reveal">의료기기급 LED 파장 · 무선 충전 · IPX7 방수<br>서울대 치과 전문의가 직접 검수한 안전한 디바이스입니다.</p>
       </div>
     </div>
   </div>
