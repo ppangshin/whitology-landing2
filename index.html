@@ -414,8 +414,8 @@ footer .footer-links a:hover{color:var(--accent)}
 
 /* 잔여 수량 카운터 */
 .slots-counter{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 18px;background:rgba(239,68,68,.06);border:1.5px solid rgba(239,68,68,.2);border-radius:100px;font-size:.88rem;color:var(--text);font-weight:600}
-.slots-counter .slots-bar{flex:0 0 100px;height:8px;background:rgba(239,68,68,.12);border-radius:4px;overflow:hidden;position:relative}
-.slots-counter .slots-fill{height:100%;background:linear-gradient(90deg,var(--coral),#dc2626);border-radius:4px;transition:width .5s}
+.slots-counter .slots-bar{flex:0 0 140px;height:10px;background:rgba(200,200,210,.25);border-radius:5px;overflow:hidden;position:relative}
+.slots-counter .slots-fill{height:100%;background:linear-gradient(90deg,#ef4444,#dc2626);border-radius:5px;transition:width .5s}
 .slots-counter .slots-num{color:var(--coral);font-weight:800;font-size:1rem}
 
 @media(max-width:768px){
@@ -424,7 +424,7 @@ footer .footer-links a:hover{color:var(--accent)}
   .compare-cell{padding:12px 10px;font-size:.82rem}
   .compare-bottom{font-size:.8rem}
   .slots-counter{font-size:.82rem;padding:8px 14px;gap:6px}
-  .slots-counter .slots-bar{flex:0 0 80px;height:7px}
+  .slots-counter .slots-bar{flex:0 0 110px;height:8px}
   .slots-counter .slots-num{font-size:.92rem}
 }
 @media(max-width:360px){
@@ -467,7 +467,7 @@ footer .footer-links a:hover{color:var(--accent)}
       <div class="hero-badge">서울대 치과 전문의 검수 완료</div>
       <h1>매일 5분,<br><span class="highlight">미백 · 잇몸 · 충치 케어</span></h1>
       <div class="hero-inline-img">
-        <img src="images/Upscale_Whitology 3 Products2.png" alt="Whitology 디바이스" loading="eager">
+        <img src="images/hero-device.jpeg" alt="Whitology 디바이스" loading="eager">
       </div>
       <p class="hero-sub">
         치약만으로 부족했던 구강 관리,<br>
@@ -488,7 +488,7 @@ footer .footer-links a:hover{color:var(--accent)}
     </div>
     <div class="hero-visual">
       <div class="hero-glow"></div>
-      <img src="images/Upscale_Whitology 3 Products2.png" alt="Whitology 디바이스와 제제" loading="eager">
+      <img src="images/hero-device.jpeg" alt="Whitology 디바이스와 제제" loading="eager">
     </div>
   </div>
 </section>
@@ -501,13 +501,11 @@ footer .footer-links a:hover{color:var(--accent)}
     <div class="section-desc reveal" style="margin-bottom:28px">의료기기급 LED 기술 + AI 분석 + 전용 케어 젤,<br>셋이 합쳐져 집에서 치과급 관리가 가능합니다.</div>
     <div class="features-grid features-grid--2col">
       <div class="feature-card reveal">
-        <img class="feature-card-img" src="images/Whitology4_AI_analysis3.jpg" alt="Whitology LED 디바이스" loading="lazy">
         <div class="feature-icon blue">💡</div>
         <h3>의료기기급 LED 디바이스</h3>
         <p>치과와 동일한 파장의 LED로 미백·잇몸·충치 케어를 하나의 디바이스로 해결. 무선 충전 & 방수 설계.</p>
       </div>
       <div class="feature-card reveal">
-        <img class="feature-card-img" src="images/Whitology3_Package.png" alt="AI 정밀 분석" loading="lazy">
         <div class="feature-icon green">🔬</div>
         <h3>AI 정밀 분석</h3>
         <p>사진 2장으로 치아 색상, 잇몸 건강, 플라그 수준까지 분석. 나만의 4주 맞춤 케어 플랜을 제공합니다.</p>
@@ -582,7 +580,7 @@ footer .footer-links a:hover{color:var(--accent)}
   <div class="container">
     <div class="showcase-layout">
       <div class="showcase-image reveal">
-        <img src="images/hero-device.jpeg" alt="Whitology LED 디바이스" loading="lazy">
+        <img src="images/Upscale_Whitology 3 Products2.png" alt="Whitology 제품 구성" loading="lazy">
       </div>
       <div class="showcase-text">
         <div class="section-label reveal">THE DEVICE</div>
@@ -649,7 +647,7 @@ footer .footer-links a:hover{color:var(--accent)}
       </p>
       <div class="slots-counter">
         선착순 1,000명 중
-        <span class="slots-bar"><span class="slots-fill" id="slotsFill" style="width:85%"></span></span>
+        <span class="slots-bar"><span class="slots-fill" id="slotsFill" style="width:80%"></span></span>
         <span class="slots-num" id="slotsLeft">153</span>자리 남음
       </div>
     </div>
@@ -859,7 +857,7 @@ function initCountdown(){
 // ─── 잔여 수량 ───
 function animateCounter(){
   var total = 1000;
-  var reserved = 847 + Math.floor(Math.random() * 30);
+  var reserved = 800 + Math.floor(Math.random() * 20);
   var left = total - reserved;
   document.getElementById('slotsLeft').textContent = left;
   document.getElementById('slotsFill').style.width = Math.round((reserved/total)*100) + '%';
