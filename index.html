@@ -185,7 +185,7 @@ section{padding:56px 0 64px;position:relative}
 /* ─── 팝업 모달 ─── */
 .modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(26,26,46,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s}
 .modal-overlay.active{opacity:1;visibility:visible}
-.modal{background:#fff;border:1px solid rgba(110,75,255,.12);border-radius:24px;padding:40px 36px;max-width:420px;width:90%;text-align:center;transform:scale(.9);transition:transform .3s;box-shadow:0 32px 80px rgba(26,26,46,.18);max-height:90vh;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative}
+.modal{background:#fff;border:1px solid rgba(110,75,255,.12);border-radius:24px;padding:40px 36px;max-width:420px;width:90%;text-align:center;transform:scale(.9);transition:transform .3s;box-shadow:0 32px 80px rgba(26,26,46,.18);max-height:90vh;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;overscroll-behavior:contain}
 .modal-overlay.active .modal{transform:scale(1)}
 .modal-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
 .modal-close:hover{background:var(--bg-alt)}
@@ -356,31 +356,44 @@ footer .footer-links a:hover{color:var(--accent)}
   .cta-notice{max-width:100%;padding:12px 14px}
   .cta-notice li{font-size:.68rem}
   .live-counter{font-size:.82rem;padding:7px 14px}
+  .consent-checks{gap:6px;margin:10px 0}
+  .consent-label{font-size:.78rem;gap:6px}
+  .cb-custom{width:18px;height:18px;border-radius:4px}
+  .consent-text a{font-size:.78rem}
 
   /* ── 섹션 타이틀 ── */
   .section-title{font-size:clamp(1.4rem,5vw,1.75rem)}
   .section-label{font-size:.82rem;letter-spacing:.15em}
   .section-desc{font-size:.9rem}
 
-  /* ── 모달 → 바텀시트 ── */
+  /* ── 사전예약 모달 → 바텀시트 ── */
   .modal-overlay{align-items:flex-end}
-  .modal{width:100%;max-width:100%;border-radius:20px 20px 0 0;padding:24px 20px calc(env(safe-area-inset-bottom,16px) + 20px);transform:translateY(100%);max-height:85vh;max-height:85dvh}
+  .modal{width:100%;max-width:100%;border-radius:20px 20px 0 0;padding:24px 20px calc(env(safe-area-inset-bottom,16px) + 20px);transform:translateY(100%);max-height:88vh;max-height:88dvh;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .modal-overlay.active .modal{transform:translateY(0)}
-  .privacy-modal{padding:24px 18px calc(env(safe-area-inset-bottom,16px) + 20px)}
-  .privacy-block h3{font-size:.85rem}
-  .privacy-block p{font-size:.78rem}
-  .privacy-table{font-size:.75rem}
-  .privacy-table th,.privacy-table td{padding:8px 10px}
-  .consent-label{font-size:.78rem}
-  .cb-custom{width:18px;height:18px}
   .modal-close{top:12px;right:12px}
-  .modal h2{font-size:1.2rem}
-  .modal-price-row{margin-bottom:12px}
-  .modal-price-row .now{font-size:1.25rem}
-  .modal-gift{font-size:.78rem;padding:5px 12px;margin-bottom:16px}
+  .modal h2{font-size:1.15rem}
+  .modal-price-row{margin-bottom:10px}
+  .modal-price-row .now{font-size:1.2rem}
+  .modal-gift{font-size:.78rem;padding:5px 12px;margin-bottom:14px}
+  .modal-form{gap:10px}
   .modal-form input{padding:13px 14px;font-size:16px;min-height:48px}
+  .modal-form .consent-checks{margin:6px 0}
   .modal-form button{padding:14px;font-size:.98rem;min-height:52px}
-  .modal-sub{font-size:.72rem}
+  .modal-sub{font-size:.72rem;margin-top:8px}
+  .modal-success h2{font-size:1.15rem}
+  .modal-success p{font-size:.88rem}
+
+  /* ── 개인정보 팝업 → 바텀시트 ── */
+  .privacy-modal{padding:20px 16px calc(env(safe-area-inset-bottom,16px) + 20px);max-height:90vh;max-height:90dvh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .privacy-modal h2{font-size:1.05rem !important;margin-bottom:16px !important}
+  .privacy-block{margin-bottom:16px;padding-bottom:12px}
+  .privacy-block h3{font-size:.84rem}
+  .privacy-block p{font-size:.76rem}
+  .privacy-note{font-size:.72rem}
+  .privacy-table{font-size:.73rem}
+  .privacy-table th{width:32%;padding:8px;font-size:.72rem}
+  .privacy-table td{padding:8px;font-size:.72rem}
+  .privacy-modal .btn-primary{font-size:.95rem;min-height:48px}
 
   /* ── 플로팅 CTA ── */
   .float-indicator{bottom:16px;width:calc(100% - 32px);max-width:400px;height:54px;display:flex;align-items:center;justify-content:center;padding:0 16px;border-radius:54px;font-size:clamp(.92rem,4vw,1.05rem)}
@@ -405,6 +418,16 @@ footer .footer-links a:hover{color:var(--accent)}
   .stat-item .stat-label{font-size:.76rem}
   .container{padding:0 14px}
   .review-card{min-width:260px}
+  .modal{padding:20px 16px calc(env(safe-area-inset-bottom,12px) + 16px)}
+  .modal h2{font-size:1.08rem}
+  .modal-price-row .now{font-size:1.15rem}
+  .modal-gift{margin-bottom:12px}
+  .privacy-modal{padding:18px 14px calc(env(safe-area-inset-bottom,12px) + 16px)}
+  .privacy-modal h2{font-size:1rem !important}
+  .privacy-table th{width:30%}
+  .compare-cell .x-icon,.compare-cell .o-icon{width:18px;height:18px;font-size:.6rem}
+  .slots-counter{flex-wrap:wrap;font-size:.78rem}
+  .slots-counter .slots-bar{flex:0 0 90px;height:7px}
 }
 
 /* ═══════════════════════════════
@@ -422,6 +445,19 @@ footer .footer-links a:hover{color:var(--accent)}
   .hero-actions .btn-primary,
   .hero-actions .btn-secondary{height:48px;font-size:.92rem}
   .review-card{min-width:240px}
+  .modal{padding:18px 14px calc(env(safe-area-inset-bottom,10px) + 14px)}
+  .modal h2{font-size:1rem}
+  .modal-form input{padding:12px;min-height:44px}
+  .modal-form button{padding:12px;min-height:48px;font-size:.92rem}
+  .consent-label{font-size:.72rem}
+  .cb-custom{width:16px;height:16px}
+  .privacy-modal{padding:16px 12px calc(env(safe-area-inset-bottom,10px) + 14px)}
+  .privacy-block h3{font-size:.78rem}
+  .privacy-block p,.privacy-note{font-size:.68rem}
+  .privacy-table{font-size:.68rem}
+  .privacy-table th,.privacy-table td{padding:6px}
+  .compare-cell{padding:8px 6px;font-size:.72rem}
+  .compare-row.header .compare-cell{font-size:.72rem;padding:10px 6px}
 }
 
 /* ─── 비교 블록 ─── */
@@ -450,10 +486,11 @@ footer .footer-links a:hover{color:var(--accent)}
 .slots-counter .slots-num{color:var(--coral);font-weight:800;font-size:1rem}
 
 @media(max-width:768px){
-  .compare-table{border-radius:16px}
-  .compare-row.header .compare-cell{padding:13px 10px;font-size:.85rem}
-  .compare-cell{padding:12px 10px;font-size:.82rem}
-  .compare-bottom{font-size:.8rem}
+  .compare-table{border-radius:16px;margin:0 -4px}
+  .compare-row.header .compare-cell{padding:12px 8px;font-size:.82rem}
+  .compare-cell{padding:11px 8px;font-size:.8rem;gap:4px}
+  .compare-cell .x-icon,.compare-cell .o-icon{width:20px;height:20px;font-size:.65rem}
+  .compare-bottom{font-size:.78rem}
   .slots-counter{font-size:.82rem;padding:8px 14px;gap:6px}
   .slots-counter .slots-bar{flex:0 0 110px;height:8px}
   .slots-counter .slots-num{font-size:.92rem}
